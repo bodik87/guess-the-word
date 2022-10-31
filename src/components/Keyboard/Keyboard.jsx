@@ -1,7 +1,8 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ukrainianAlphabet } from '../../data/alphabet'
 import { questions } from '../../data/questions';
-import { pushToGuessedLetters, pushToSelectedLetters, setInformationMessage, toggleActivePlayer } from '../../store/word/wordSlice';
+import { pushToGuessedLetters, pushToSelectedLetters, setGameOver, setInformationMessage, toggleActivePlayer } from '../../store/word/wordSlice';
 import styles from './Keyboard.module.scss'
 
 export const Keyboard = () => {
@@ -9,10 +10,10 @@ export const Keyboard = () => {
   const dispatch = useDispatch();
 
   const answer = questions[0].answer.toUpperCase().split('')
-  const { guessedLetters, selectedLetters } = useSelector(store => store.word)
+  const { guessedLetters, selectedLetters, gameOver } = useSelector(store => store.word)
   const uniqueAnswerLettersLength = [...new Set([...answer])].length
   const uniqueGuessedLettersLength = guessedLetters.length
-  const gameOver = uniqueAnswerLettersLength === uniqueGuessedLettersLength
+  const guessed = uniqueAnswerLettersLength === uniqueGuessedLettersLength
 
   const handleClick = (e) => {
     const letter = e.target.innerHTML.toLowerCase()
@@ -32,7 +33,9 @@ export const Keyboard = () => {
     } else { dispatch(setInformationMessage('Гра скінчилась!')) }
   }
 
-  const keyboardStyle = gameOver ? styles.keys_hide : styles.keys
+  console.log(gameOver);
+
+  const keyboardStyle = guessed ? styles.keys_hide : styles.keys
 
   return (
     <div className={keyboardStyle}>
