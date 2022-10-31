@@ -1,0 +1,42 @@
+.players {
+  display: flex;
+  width: 105%;
+  justify-content: space-between;
+  position: absolute;
+  top: -15px;
+}
+
+.player {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: 24px;
+  transition: all 1s;
+
+  &_first {
+    @extend .player;
+    background-color: aqua;
+
+    &_active {
+      @extend .player_first;
+      width: 150px;
+      height: 150px;
+      transform: translateX(-5px) translateY(-5px)
+    }
+  }
+
+  &_second {
+    @extend .player;
+    background-color: rgb(255, 230, 0);
+
+    &_active {
+      @extend .player_second;
+      width: 150px;
+      height: 150px;
+      transform: translateX(5px) translateY(-5px)
+    }
+  }
+}

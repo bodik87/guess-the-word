@@ -1,0 +1,103 @@
+.keys {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border: 3px solid rgb(147, 197, 122);
+  border-radius: 8px;
+  padding: 8px 16px;
+  text-align: center;
+  width: 70%;
+
+  &_hide {
+    display: none;
+  }
+
+  &_title {
+    margin-bottom: 8px;
+  }
+
+  &_grid {
+    width: 400px;
+    display: grid;
+    grid-template-columns: repeat(17, 1fr);
+    width: 100%;
+    gap: 4px;
+    margin-bottom: 8px;
+  }
+
+  &_letter {
+    cursor: pointer;
+    text-align: center;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background-color: rgb(255, 233, 233);
+    border: none;
+
+    &:hover {
+      background-color: rgb(243, 174, 174);
+    }
+
+    &:active {
+      background-color: rgb(241, 134, 134);
+    }
+  }
+
+  &_hidden {
+    text-align: center;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background-color: rgb(219, 219, 219);
+    border: none;
+  }
+}
+
+.button {
+  cursor: pointer;
+  width: 100px;
+  padding: 4px 0;
+  border-radius: 4px;
+  border: none;
+
+  &:not(:last-child) {
+    margin-right: 5px;
+  }
+
+  &_ok {
+    @extend .button;
+    background-color: rgb(187, 238, 163);
+
+    &:hover {
+      background-color: rgb(162, 218, 134);
+    }
+
+    &:active {
+      background-color: rgb(147, 197, 122);
+    }
+  }
+
+  &_back {
+    @extend .button;
+    background-color: rgb(248, 225, 161);
+
+    &:hover {
+      background-color: rgb(236, 213, 150);
+    }
+
+    &:active {
+      background-color: rgb(224, 197, 122);
+    }
+  }
+
+  &_cancel {
+    @extend .button;
+    background-color: rgb(255, 202, 200);
+
+    &:hover {
+      background-color: rgb(241, 176, 173);
+    }
+
+    &:active {
+      background-color: rgb(238, 148, 145);
+    }
+  }
+}
