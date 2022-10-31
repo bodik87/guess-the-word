@@ -19,23 +19,17 @@ export const Keyboard = () => {
     const isLetterInAnswer = answer.join('').toLowerCase().split('').includes(letter)
     const isLetterInSelectedLetters = selectedLetters.includes(letter)
 
-    if (gameOver) {
-      // dispatch(setInformationMessage('Гра скінчилась!'))
-      return
+    if (isLetterInAnswer) {
+      dispatch(pushToGuessedLetters(letter))
+      dispatch(setInformationMessage('Правильно! Ходіть знову!'))
     } else {
-
-      if (isLetterInAnswer) {
-        dispatch(pushToGuessedLetters(letter))
-        dispatch(setInformationMessage('Правильно! Ходіть знову!'))
-      } else {
-        dispatch(setInformationMessage('Немає такої літери - ходить інший гравець'))
-        dispatch(toggleActivePlayer())
-      }
-
-      if (!isLetterInSelectedLetters) {
-        dispatch(pushToSelectedLetters(e.target.innerHTML.toLowerCase()))
-      }
+      dispatch(setInformationMessage('Немає такої літери - ходить інший гравець'))
+      dispatch(toggleActivePlayer())
     }
+
+    if (!isLetterInSelectedLetters) {
+      dispatch(pushToSelectedLetters(e.target.innerHTML.toLowerCase()))
+    } else { dispatch(setInformationMessage('Гра скінчилась!')) }
   }
 
   const keyboardStyle = gameOver ? styles.keys_hide : styles.keys

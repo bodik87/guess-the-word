@@ -1,0 +1,19 @@
+.newGame {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  cursor: pointer;
+  width: 100px;
+  padding: 4px 0;
+  border-radius: 4px;
+  border: none;
+  background-color: rgb(255, 202, 200);
+
+  &:hover {
+    background-color: rgb(241, 176, 173);
+  }
+
+  &:active {
+    background-color: rgb(238, 148, 145);
+  }
+}

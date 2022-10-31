@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { NewGame } from '../../components/NewGame/NewGame'
 import styles from './Start-screen.module.scss'
 
 export const StartScreen = () => {
