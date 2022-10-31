@@ -19,24 +19,31 @@
   &_first {
     @extend .player;
     background-color: aqua;
+    outline: 8px solid transparent;
+
+
 
     &_active {
       @extend .player_first;
       width: 150px;
       height: 150px;
-      transform: translateX(-5px) translateY(-5px)
+      transform: translateX(-5px) translateY(-5px);
+      outline: 8px solid rgb(0, 195, 255);
     }
   }
 
   &_second {
     @extend .player;
     background-color: rgb(255, 230, 0);
+    outline: 8px solid transparent;
 
     &_active {
       @extend .player_second;
       width: 150px;
       height: 150px;
-      transform: translateX(5px) translateY(-5px)
+      transform: translateX(5px) translateY(-5px);
+      outline: 8px solid orange;
+
     }
   }
 }

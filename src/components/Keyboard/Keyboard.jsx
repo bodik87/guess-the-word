@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { ukrainianAlphabet } from '../../data/alphabet'
 import { questions } from '../../data/questions';
-import { pushToGuessedLetters, pushToSelectedLetters, toggleActivePlayer } from '../../store/word/wordSlice';
+import { pushToGuessedLetters, pushToSelectedLetters, setInformationMessage, toggleActivePlayer } from '../../store/word/wordSlice';
 import styles from './Keyboard.module.scss'
 
 export const Keyboard = () => {
@@ -17,19 +17,18 @@ export const Keyboard = () => {
   const handleClick = (e) => {
     const letter = e.target.innerHTML.toLowerCase()
     const isLetterInAnswer = answer.join('').toLowerCase().split('').includes(letter)
-    const isLetterInGuessedLetters = guessedLetters.includes(letter)
     const isLetterInSelectedLetters = selectedLetters.includes(letter)
 
     if (gameOver) {
+      // dispatch(setInformationMessage('Гра скінчилась!'))
       return
     } else {
 
-      if (isLetterInGuessedLetters) {
-        console.log('Така буква вже обрана')
-      } else if (isLetterInAnswer) {
+      if (isLetterInAnswer) {
         dispatch(pushToGuessedLetters(letter))
+        dispatch(setInformationMessage('Правильно! Ходіть знову!'))
       } else {
-        console.log('Немає такої букви')
+        dispatch(setInformationMessage('Немає такої літери - ходить інший гравець'))
         dispatch(toggleActivePlayer())
       }
 

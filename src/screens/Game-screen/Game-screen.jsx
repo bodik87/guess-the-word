@@ -1,13 +1,16 @@
-import { GuessedWord } from '../../components/GuessedWord/GuessedWord'
+import { GuessedWord } from '../../components/GuessedWord'
 import { Keyboard } from '../../components/Keyboard'
-import { Players } from '../../components/Players/Players'
+import { Players } from '../../components/Players'
+import { Question } from '../../components/Question'
+import { Information } from '../../components/Information'
 import styles from './Game-screen.module.scss'
 
 export const GameScreen = () => {
-
   return (
     <div className={styles.gameScreen}>
+      <Information />
       <Players />
+      <Question />
       <GuessedWord />
       <Keyboard />
     </div>

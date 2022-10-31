@@ -4,7 +4,9 @@ import styles from './Players.module.scss'
 
 
 export const Players = () => {
+
   const { activePlayer } = useSelector(store => store.word)
+
   return (
     <div className={styles.players}>
       <div className={activePlayer ? styles.player_first_active : styles.player_first}>1</div>
