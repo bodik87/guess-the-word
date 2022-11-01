@@ -11,11 +11,11 @@ const playerSlice = createSlice({
     toggleActivePlayer: (state) => {
       state.activePlayer = !state.activePlayer
     },
-    increaseFirstScore: (state) => {
-      state.firstPlayerScore = ++state.firstPlayerScore
+    increaseFirstScore: (state, action) => {
+      state.firstPlayerScore = state.firstPlayerScore + +action.payload
     },
-    increaseSecondScore: (state) => {
-      state.secondPlayerScore = ++state.secondPlayerScore
+    increaseSecondScore: (state, action) => {
+      state.secondPlayerScore = state.secondPlayerScore + +action.payload
     },
   }
 });

@@ -5,7 +5,7 @@ import styles from './Information.module.scss'
 
 export const Information = () => {
 
-  const { informationMessage } = useSelector(store => store.word)
+  const { informationMessage } = useSelector(store => store.game)
 
   return (
     <div className={styles.information}>{informationMessage}</div>
