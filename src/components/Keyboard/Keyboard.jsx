@@ -12,8 +12,8 @@ export const Keyboard = () => {
   const { selectedLetters } = useSelector(store => store.word)
   const { activePlayer } = useSelector(store => store.player)
 
-  const { activeQuestionIndex } = useSelector(store => store.game)
-  const answer = questions.months[activeQuestionIndex].answer.toUpperCase().split('')
+  const { activeCategory, activeQuestionIndex } = useSelector(store => store.game)
+  const answer = questions[activeCategory][activeQuestionIndex].answer.toUpperCase().split('')
 
   const handleClick = (e) => {
     const letter = e.target.innerHTML.toLowerCase()

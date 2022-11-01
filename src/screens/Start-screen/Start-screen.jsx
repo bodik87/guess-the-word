@@ -10,7 +10,7 @@ export const StartScreen = () => {
   const [value, setValue] = useState('months')
   useEffect(() => {
     dispatch(changeActiveCategory(value))
-  }, [dispatch])
+  }, [value])
 
   return (
     <div className={styles.startScreen}>

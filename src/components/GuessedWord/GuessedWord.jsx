@@ -5,8 +5,8 @@ import { HiddenLetter } from '../HiddenLetter'
 import styles from './GuessedWord.module.scss'
 
 export const GuessedWord = () => {
-  const { activeQuestionIndex } = useSelector(store => store.game)
-  const answer = questions.months[activeQuestionIndex].answer.toUpperCase().split('')
+  const { activeCategory, activeQuestionIndex } = useSelector(store => store.game)
+  const answer = questions[activeCategory][activeQuestionIndex].answer.toUpperCase().split('')
   const guessedLetters = useSelector(store => store.word.guessedLetters)
 
   return (

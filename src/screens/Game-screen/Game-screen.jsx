@@ -8,15 +8,14 @@ import { Pause } from '../../components/Pause'
 import { Result } from '../../components/Result'
 import { questions } from '../../data/questions'
 import styles from './Game-screen.module.scss'
+import { Spinner } from '../../components/Spinner/Spinner'
 
 export const GameScreen = () => {
 
   const { firstPlayerScore, secondPlayerScore } = useSelector(store => store.player)
   const { activeCategory, activeQuestionIndex } = useSelector(store => store.game)
 
-  console.log(activeCategory);
-
-  const answer = questions.months[activeQuestionIndex].answer.toUpperCase().split('')
+  const answer = questions[activeCategory][activeQuestionIndex].answer.toUpperCase().split('')
   const totalScore = firstPlayerScore + secondPlayerScore
   const gameFinished = totalScore === answer.length
 
@@ -29,6 +28,7 @@ export const GameScreen = () => {
           <Players />
           <Question />
           <GuessedWord />
+          <Spinner />
           <Keyboard />
         </div>
       }
