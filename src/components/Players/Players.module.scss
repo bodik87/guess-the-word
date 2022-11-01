@@ -10,10 +10,12 @@
   width: 100px;
   height: 100px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  font-size: 24px;
+  font-size: 14px;
+  font-weight: 600;
   transition: all 1s;
 
   &_first {

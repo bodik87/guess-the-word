@@ -5,9 +5,7 @@ const wordSlice = createSlice({
   initialState: {
     guessedLetters: [],
     selectedLetters: [],
-    activePlayer: true,
     informationMessage: 'Починаймо!',
-    gameOver: false
   },
   reducers: {
     pushToGuessedLetters: (state, action) => {
@@ -16,14 +14,8 @@ const wordSlice = createSlice({
     pushToSelectedLetters: (state, action) => {
       state.selectedLetters.push(action.payload)
     },
-    toggleActivePlayer: (state) => {
-      state.activePlayer = !state.activePlayer
-    },
     setInformationMessage: (state, action) => {
       state.informationMessage = action.payload
-    },
-    setGameOver: (state) => {
-      state.gameOver = !state.gameOver
     },
   }
 });
@@ -31,9 +23,7 @@ const wordSlice = createSlice({
 export const {
   pushToGuessedLetters,
   pushToSelectedLetters,
-  toggleActivePlayer,
   setInformationMessage,
-  setGameOver
 } = wordSlice.actions;
 
 export default wordSlice.reducer;

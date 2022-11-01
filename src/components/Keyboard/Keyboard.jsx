@@ -1,19 +1,17 @@
-import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ukrainianAlphabet } from '../../data/alphabet'
 import { questions } from '../../data/questions';
-import { pushToGuessedLetters, pushToSelectedLetters, setGameOver, setInformationMessage, toggleActivePlayer } from '../../store/word/wordSlice';
+import { pushToGuessedLetters, pushToSelectedLetters, setInformationMessage } from '../../store/word/wordSlice';
+import { increaseFirstScore, increaseSecondScore, toggleActivePlayer } from '../../store/player/playerSlice'
 import styles from './Keyboard.module.scss'
 
 export const Keyboard = () => {
 
   const dispatch = useDispatch();
+  const { selectedLetters } = useSelector(store => store.word)
+  const { activePlayer } = useSelector(store => store.player)
 
   const answer = questions[0].answer.toUpperCase().split('')
-  const { guessedLetters, selectedLetters, gameOver } = useSelector(store => store.word)
-  const uniqueAnswerLettersLength = [...new Set([...answer])].length
-  const uniqueGuessedLettersLength = guessedLetters.length
-  const guessed = uniqueAnswerLettersLength === uniqueGuessedLettersLength
 
   const handleClick = (e) => {
     const letter = e.target.innerHTML.toLowerCase()
@@ -21,8 +19,16 @@ export const Keyboard = () => {
     const isLetterInSelectedLetters = selectedLetters.includes(letter)
 
     if (isLetterInAnswer) {
-      dispatch(pushToGuessedLetters(letter))
-      dispatch(setInformationMessage('Правильно! Ходіть знову!'))
+      if (activePlayer) {
+        dispatch(pushToGuessedLetters(letter))
+        dispatch(setInformationMessage('Перший гравець відповів правильно! Він ходить знову!'))
+        dispatch(increaseFirstScore())
+      }
+      if (!activePlayer) {
+        dispatch(pushToGuessedLetters(letter))
+        dispatch(setInformationMessage('Другий гравець відповів вірно! Він ходить знову!'))
+        dispatch(increaseSecondScore())
+      }
     } else {
       dispatch(setInformationMessage('Немає такої літери - ходить інший гравець'))
       dispatch(toggleActivePlayer())
@@ -30,15 +36,11 @@ export const Keyboard = () => {
 
     if (!isLetterInSelectedLetters) {
       dispatch(pushToSelectedLetters(e.target.innerHTML.toLowerCase()))
-    } else { dispatch(setInformationMessage('Гра скінчилась!')) }
+    }
   }
 
-  console.log(gameOver);
-
-  const keyboardStyle = guessed ? styles.keys_hide : styles.keys
-
   return (
-    <div className={keyboardStyle}>
+    <div className={styles.keys}>
       <p className={styles.keys_title}>Введiть лiтеру</p>
       <div className={styles.keys_grid}>
         {
